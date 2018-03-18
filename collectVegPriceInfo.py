@@ -10,8 +10,8 @@ prereadydata = [u"蔬菜",u"水果",u"肉禽蛋",u"水产",u"粮油"]
 
 def getKindSet():
     try:
-        print "Note:1-蔬菜,2-水果,3-肉禽蛋,4-水产,5-粮油\n"
-        print "Example:If you want to search 蔬菜, 水果 and 肉禽蛋, you should input 1&2&3\n"
+        print u"Note:1-蔬菜,2-水果,3-肉禽蛋,4-水产,5-粮油"
+        print u"Example:If you want to search 蔬菜, 水果 and 肉禽蛋, you should input 1&2&3"
         kindSet = raw_input("Please input the kind set you want to search:\n")
         return kindSet
     except:
@@ -19,8 +19,8 @@ def getKindSet():
 
 def getTimeRange():
     try:
-        print "Please input the time range you want to search, like 2018-03-18\n"
-        print "Note:beginTime is included and endTime isn't included\n"
+        print "\nPlease input the time range you want to search, like 2018-03-18"
+        print "Note:beginTime is included and endTime isn't included"
         beginTime = raw_input("Please input beginTime:\n")
         endTime = raw_input("Please input endTime:\n")
         timeRange = "begintime=" + str(beginTime) + "&endtime=" + str(endTime)
@@ -66,8 +66,8 @@ if __name__ == "__main__":
                     else:
                         ws = wb.add_sheet(prereadydata[int(kind) - 1])
                         pageTotal = math.ceil(resultNum / 20.0)
-
-                        print "Page " + str(pageNum) + " is loading......\n"
+                        print "\nThe kind " + prereadydata[int(kind) - 1] + " is loading......\n"
+                        print "Page " + str(pageNum) + " is loading......"
                         tableData = content.find_all('tr')
                         for data in tableData:
                             rowData = data.find_all('td')
@@ -80,7 +80,7 @@ if __name__ == "__main__":
                         pageNum = pageNum + 1
 
                         while pageNum <= pageTotal:
-                            print "Page " + str(pageNum) + " is loading......\n"
+                            print "Page " + str(pageNum) + " is loading......"
                             url = url_base + "/marketanalysis/" + kind + "/list/" + str(pageNum) + ".shtml?prodname=&" + timeRange
                             html = getHtml(url)
                             if html == "Error":
@@ -104,5 +104,5 @@ if __name__ == "__main__":
                         print "\nThe kind " + prereadydata[int(kind) - 1] + " has been collected!\n"
                         print "#############################################################"
         wb.save(fileName)
-        print "\n\nAll data is saved successfully as a file named " + str(timeRange) + "!!!\n"
+        print "\nAll data is saved successfully as a file named " + str(timeRange) + "!!!\n"
         raw_input("Please press any key to exit......\n")
